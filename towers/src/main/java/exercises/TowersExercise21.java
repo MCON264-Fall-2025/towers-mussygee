@@ -57,6 +57,19 @@ public class TowersExercise21 {
         //   a) solve(n-1, from, to, aux)
         //   b) increment count for moving disk n
         //   c) solve(n-1, aux, from, to)
+
+        // Base case: no disks to move
+        if (n == 0) return;
+
+        // Recursive case:
+        // 1. move n-1 disks from 'from' to 'aux'
+        solve(n - 1, from, to, aux);
+
+        // 2. move one disk (count this move)
+        count++;
+
+        // 3. move n-1 disks from 'aux' to 'to'
+        solve(n - 1, aux, from, to);
     }
 
     public static void main(String[] args) {
