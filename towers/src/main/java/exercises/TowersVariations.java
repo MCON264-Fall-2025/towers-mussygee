@@ -65,6 +65,24 @@ public class TowersVariations {
         //        System.out.printf("Move disk %d: %d → %d → %d%n", n, from, mid, to);
         //     or if counting only: count += 2; // because two moves required
         //  c) Move n-1 disks from 'mid' to 'to' (using 'from' as helper)
+
+        // Base case: no disks move
+        if (n == 0) return;
+
+        // Step 1: move n-1 disks from 'from' -> 'mid' (using 'to' as helper)
+        solveVariation(n - 1, from, to, mid);
+
+        // Step 2: move disk n from 'from' -> 'mid'
+        count++;
+
+        // Step 3: Move n-1 from 'to' back to 'from' (still constrained)
+        solveVariation(n - 1, to, mid, from);
+
+        // Step 4: move disk n from 'mid' -> 'to'
+        count++;
+
+        // Step 5: move n-1 disks from 'mid' -> 'to' (using 'from' as helper)
+        solveVariation(n -1, from, mid, to);
     }
 
     public static void main(String[] args) {

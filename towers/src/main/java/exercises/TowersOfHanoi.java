@@ -41,6 +41,19 @@ public class TowersOfHanoi {
         // 1) solve(n - 1, from, to, aux, moves);
         // 2) moves.add(from + " -> " + to);
         // 3) solve(n - 1, aux, from, to, moves);
+
+        // exit condition (handles n == 0 and any n<0 just in case)
+        if (n <= 0) return;
+
+        // 1) move n-1 from 'from' to 'aux' using 'to' as auxiliary
+        solve(n - 1, from, to, aux, moves);
+
+        // 2) move the largest disk from 'from' to 'to'
+        moves.add(from + " -> " + to);
+
+        // 3) move n-1 from 'aux' to 'to' using 'from' as auxiliary
+        solve(n - 1, aux, from, to, moves);
+
     }
 }
 
